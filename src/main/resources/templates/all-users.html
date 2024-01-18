@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Администрирование</title>
+</head>
+<body>
+<table>
+    <thead>
+    <th>Id</th>
+    <th>Имя</th>
+    <th>Операции</th>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${allUsers}">
+        <td th:text="${user.getId()}">Id</td>
+        <td th:text="${user.getUsername()}">Name</td>
+        <td>
+            <button
+                    th:href="@{/admin/updateInfo(userId=${user.getId()})}"
+                    onclick="window.location.href=(this.getAttribute('href'))">Изменить
+            </button>
+
+            <button
+                    th:href="@{/admin/deleteUser(userId=${user.getId()})}"
+                    onclick="window.location.href=(this.getAttribute('href'))">Удалить
+            </button>
+
+        </td>
+
+    </tr>
+    </tbody>
+</table>
+<br>
+<a href="admin/addUser">Добавить пользователя</a>
+<br>
+<form th:action="@{/logout}" method="POST">
+    <input type="submit" value="Logout"/>
+</form>
+</body>
+</html>

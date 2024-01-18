@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Add\Update</title>
+</head>
+<body>
+
+<form action="#" th:action="@{/saveUser}" th:object="${user}" method="post">
+
+    <div hidden>
+        <input type="text" th:field="*{id}" id="id" placeholder="id">
+        <label for="id">Id</label>
+    </div>
+
+    <div>
+        <input type="text" th:field="*{username}" id="name" placeholder="Имя Пользоватея" minlength="2" maxlength="100">
+        <label for="name">Имя Пользователя</label>
+    </div>
+
+    <div>
+        <input type="text" th:field="*{password}" id="password" placeholder="Пароль" minlength="2" maxlength="100">
+        <label for="password">Пароль</label>
+    </div>
+
+    <div>
+        <input type="text" th:field="*{first_Name}" id="first_Name" placeholder="Имя" minlength="2" maxlength="100">
+        <label for="first_Name">Имя</label>
+    </div>
+
+    <div>
+        <input type="text" th:field="*{last_Name}" id="last_Name" placeholder="Фамилия" minlength="2" maxlength="100">
+        <label for="last_Name">Фамилия</label>
+    </div>
+
+    <div>
+        <input type="text" th:field="*{mail}" id="mail" placeholder="Почта" minlength="2" maxlength="100">
+        <label for="mail">Почта</label>
+    </div>
+
+    <label>Роли:</label>
+    <div th:each="role : ${allRoles}">
+        <input type="checkbox" name="roles" th:value="${role.getId()}" th:field="*{roles}"/>
+        <label th:for="${'role-' + role.getId()}" th:text="${role.getName()}"></label>
+    </div>
+
+    <br>
+    <button type="submit">Сохранить!</button>
+</form>
+
+<form th:action="@{/logout}" method="POST">
+    <input type="submit" value="Logout"/>
+</form>
+
+</body>
+</html>
