@@ -26,20 +26,20 @@ public class AdminController {
     }
 
     @GetMapping("/user")
-    public String HomePage(Model model, Principal principal) {
+    public String homePage(Model model, Principal principal) {
         User user = userService.findByUsername(principal.getName());
         model.addAttribute("user", user);
         return "user";
     }
 
     @GetMapping("/admin")
-    public String AllUsers(Model model) {
+    public String allUsers(Model model) {
         model.addAttribute("allUsers", userService.getAllUsers());
         return "all-users";
     }
 
     @RequestMapping("/admin/addUser")
-    public String AddUserForm(Model model) {
+    public String addUserForm(Model model) {
         model.addAttribute("user", new User());
         model.addAttribute("allRoles", userService.getAllRoles());
         return "add-user";
