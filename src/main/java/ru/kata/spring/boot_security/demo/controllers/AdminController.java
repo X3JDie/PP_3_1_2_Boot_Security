@@ -26,14 +26,14 @@ public class AdminController {
     }
 
     @GetMapping("/user")
-    public String homePage(Model model, Principal principal) {
+    public String displayHomePage(Model model, Principal principal) {
         User user = userService.findByUsername(principal.getName());
         model.addAttribute("user", user);
         return "user";
     }
 
     @GetMapping("/admin")
-    public String allUsers(Model model) {
+    public String getAllUsers(Model model) {
         model.addAttribute("allUsers", userService.getAllUsers());
         return "all-users";
     }
